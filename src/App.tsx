@@ -109,6 +109,8 @@ function App() {
       : false
   )
 
+  const [wordDefinition, setWordDefinition] = useState()
+
   useEffect(() => {
     // if no game state on load,
     // show the user the how-to info modal
@@ -187,6 +189,22 @@ function App() {
       }, (solution.length + 1) * REVEAL_TIME_MS)
     }
   }, [isGameWon, isGameLost, showSuccessAlert])
+
+  useEffect(() => {
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${solution}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw response
+      })
+      .then((data) => {
+        setWordDefinition(data[0].meanings[0].definitions[0].definition)
+      })
+      .catch((error) => {
+        console.error('Error fetching data: ', error)
+      })
+  }, [solution])
 
   const onChar = (value: string) => {
     if (
@@ -289,6 +307,10 @@ function App() {
             </p>
           </div>
         )}
+
+        <div className="flex justify-center text-white">
+          {`Tip: ${wordDefinition}`}
+        </div>
 
         <div className="mx-auto flex w-full grow flex-col px-1 pt-2 pb-8 sm:px-6 md:max-w-7xl lg:px-8 short:pb-2 short:pt-2">
           <div className="flex grow flex-col justify-center pb-6 short:pb-2">
