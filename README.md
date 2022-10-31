@@ -4,7 +4,7 @@ This is a clone project of the popular word guessing game we all know and love. 
 
 [**Try out the demo!**](https://reactle.vercel.app/)
 
-Using this funny API to get the word definitions: (https://dictionaryapi.dev/)
+Using this funny API to get the words definitions: [dictionaryapi.dev](https://dictionaryapi.dev/)
 
 ## Build and run
 
