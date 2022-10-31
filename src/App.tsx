@@ -309,7 +309,12 @@ function App() {
         )}
 
         {wordDefinition && (
-          <div className="flex justify-center text-white">
+          <div
+            className={
+              'flex justify-center ' +
+              (isDarkMode ? 'text-white' : 'text-black')
+            }
+          >
             {`Tip: ${wordDefinition}`}
           </div>
         )}
